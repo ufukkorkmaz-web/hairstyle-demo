@@ -1,0 +1,443 @@
+<!doctype html>
+<html lang="tr">
+ <head>
+  <meta charset="UTF-8">
+  <script>document.documentElement.classList.add('js')</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#101113">
+  <title>Noir Barber Studio — Tarzına Yakışan Kesim</title>
+  <meta name="description" content="Noir Barber Studio'da özenli kesimleri, modern saç stillerini ve berberlik sanatını keşfedin.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&amp;display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.577.0/dist/umd/lucide.min.js"></script>
+  <style>
+    :root{--bg:#101113;--surface:#18191c;--text:#f3eee7;--muted:#aaa8a5;--accent:#c9a47c;--accent-2:#e6c9a2;--line:#ffffff25}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--bg);color:var(--text);font-family:"DM Sans",sans-serif;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+    button,input,select,textarea{font-family:"DM Sans",sans-serif}
+    button,a{-webkit-tap-highlight-color:transparent}
+    a{text-decoration:none;color:inherit}
+    button{cursor:pointer}
+    ::selection{background:var(--accent);color:#171412}
+    :focus-visible{outline:3px solid var(--accent);outline-offset:4px}
+    .site-shell{max-width:1600px;margin:auto;overflow:clip}
+    #about,#menu,#experience,#visit{scroll-margin-top:70px}
+
+    /* film grain + scroll progress */
+    body:before{content:"";position:fixed;inset:0;z-index:100;pointer-events:none;opacity:.07;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+    .progress{position:fixed;top:0;left:0;width:100%;height:2px;z-index:60;transform:scaleX(0);transform-origin:left;background:linear-gradient(90deg,#b58b61,#efcfaa)}
+
+    /* header */
+    .topbar{position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:24px 6%;border-bottom:1px solid #ffffff1b;background:#101113;transition:padding .3s,background .3s,box-shadow .3s}
+    .topbar.scrolled{padding-top:14px;padding-bottom:14px;background:#101113d9;backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);box-shadow:0 12px 34px #0007}
+    .brand{font-family:"Playfair Display",serif;font-size:30px;font-weight:700;letter-spacing:-1.6px;line-height:1}
+    .brand span{color:var(--accent)}
+    .nav-links{display:flex;align-items:center;gap:38px;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+    .nav-links a:not(.nav-cta){position:relative;transition:color .2s}
+    .nav-links a:not(.nav-cta):after{content:"";position:absolute;left:0;right:0;bottom:-7px;height:1px;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .35s}
+    .nav-links a:not(.nav-cta):hover{color:var(--accent)}
+    .nav-links a:not(.nav-cta):hover:after{transform:scaleX(1)}
+    .nav-cta,.primary-btn,.outline-btn{display:inline-flex;align-items:center;justify-content:center;gap:11px;border-radius:100px;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap;transition:transform .25s,background .25s,box-shadow .25s}
+    .nav-cta{padding:15px 23px;background:#ffffff15;border:1px solid #ffffff39;box-shadow:inset 0 1px 1px #ffffff70,0 9px 25px #0005;backdrop-filter:blur(18px)}
+    .nav-cta:hover,.primary-btn:hover,.outline-btn:hover{transform:translateY(-3px)}
+    .nav-cta:hover{background:#ffffff24}
+    .mobile-toggle{display:none;align-items:center;justify-content:center;width:44px;height:44px;border-radius:50%;border:1px solid #ffffff40;background:#ffffff16;color:var(--text);backdrop-filter:blur(14px)}
+    .mobile-toggle svg{width:20px;height:20px}
+
+    .eyebrow{display:inline-flex;align-items:center;gap:12px;color:var(--accent);text-transform:uppercase;letter-spacing:.23em;font-size:11px;font-weight:700}
+    .eyebrow:before{content:"";width:25px;height:1px;background:currentColor}
+    h1,h2,h3,p{margin-top:0}
+    h1,h2,h3{font-family:"Playfair Display",serif}
+    h1 em,h2 em{font-weight:500;color:var(--accent);background:linear-gradient(100deg,#d9b58b,#f2d9b5 60%,#c9a47c);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;padding-right:.06em;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+    .primary-btn{position:relative;overflow:hidden;padding:19px 28px;background:linear-gradient(150deg,#e2c19b,#b58b61);border:1px solid #efcfaa;color:#171412;box-shadow:inset 0 2px 2px #ffffff8c,0 12px 28px #0007}
+    .primary-btn:after{content:"";position:absolute;top:0;bottom:0;left:-80%;width:55%;background:linear-gradient(100deg,transparent,#ffffff55,transparent);transform:skewX(-20deg);transition:left .7s}
+    .primary-btn:hover:after{left:135%}
+    .outline-btn{padding:19px 27px;background:#ffffff0d;border:1px solid #ffffff45;color:var(--text);box-shadow:inset 0 1px 1px #ffffff50,0 12px 28px #0004;backdrop-filter:blur(18px)}
+    .outline-btn:hover{background:#ffffff1a;border-color:#c9a47c99}
+    .primary-btn svg,.outline-btn svg{width:17px;height:17px;transition:transform .3s}
+    .primary-btn:hover svg,.outline-btn:hover svg{transform:translate(2px,-2px)}
+
+    /* hero */
+    .hero{position:relative;padding:85px 6% 105px;background:radial-gradient(circle at 77% 72%,#62483254,transparent 40%),radial-gradient(circle at 10% 10%,#303034,transparent 42%),#111214;isolation:isolate}
+    .hero:before{content:"NOIR / 01";position:absolute;right:6%;top:94px;font-size:11px;letter-spacing:.28em;color:#c9a47c8c}
+    .hero-content{position:relative;z-index:2;max-width:1000px}
+    h1{font-weight:500;letter-spacing:-.065em;line-height:.96;font-size:clamp(82px,11vw,170px);margin:26px 0 23px}
+    .hero-bottom{display:flex;align-items:end;justify-content:space-between;gap:35px;margin-bottom:48px}
+    .hero-copy{max-width:430px;font-size:16px;line-height:1.85;color:#b7b4af;margin:0}
+    .hero-actions{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+    .hero-visual{position:relative;height:520px;margin-left:9%;display:flex;align-items:stretch}
+    .hero-visual:before{content:"";position:absolute;inset:0;transform:translate(-18px,-18px);border:1px solid #c9a47c66;clip-path:polygon(8% 0,100% 0,100% 78%,91% 100%,0 100%,0 22%)}
+    .hero-photo-wrap{position:relative;width:100%;height:100%;padding:8px;clip-path:polygon(8% 0,100% 0,100% 78%,91% 100%,0 100%,0 22%);background:linear-gradient(135deg,#e5c49b,#ffffff32 38%,#ae815d 78%,#f3d9b5);box-shadow:0 35px 75px #0009;translate:calc(var(--px,0px) * -.6) calc(var(--py,0px) * -.6);transition:translate .45s ease-out}
+    .hero-photo{display:block;width:100%;height:100%;object-fit:cover;object-position:center 42%;clip-path:polygon(8% 0,100% 0,100% 78%,91% 100%,0 100%,0 22%);filter:brightness(.7) contrast(1.09);animation:kenburns 24s ease-in-out infinite alternate}
+    .hero-visual:after{content:"TARZINI YANSIT";position:absolute;right:20px;bottom:-34px;color:#bba58d;font-size:10px;letter-spacing:.28em}
+    .floating-note{position:absolute;z-index:3;left:-9%;bottom:12%;display:flex;align-items:center;gap:12px;padding:13px 20px 13px 13px;border-radius:100px;background:linear-gradient(130deg,#ffffff30,#ffffff10);border:1px solid #ffffff66;box-shadow:inset 0 2px 2px #ffffff68,0 20px 40px #0009;backdrop-filter:blur(22px);translate:calc(var(--px,0px) * 1.1) calc(var(--py,0px) * 1.1);transition:translate .45s ease-out;animation:bob 6s ease-in-out infinite}
+    .note-icon{display:grid;place-items:center;width:43px;height:43px;border-radius:50%;background:#c9a47c;color:#171412}
+    .note-icon svg{width:19px;height:19px}
+    .floating-note strong{display:block;font-size:12px}.floating-note small{display:block;color:#d3cfca;font-size:10px;margin-top:4px}
+
+    /* ribbon */
+    .marquee{position:relative;overflow:hidden;padding:24px 0;background:#0b0c0d;border-top:1px solid #c9a47c33;border-bottom:1px solid #c9a47c33}
+    .marquee-track{display:flex;align-items:center;width:max-content;animation:marquee 46s linear infinite}
+    .marquee:hover .marquee-track{animation-play-state:paused}
+    .marquee-track span{font-family:"Playfair Display",serif;font-style:italic;font-size:32px;font-weight:500;color:#d9c3a3;white-space:nowrap}
+    .marquee-track i{width:6px;height:6px;border-radius:50%;background:var(--accent);margin:0 38px;flex:none}
+
+    /* intro */
+    .intro{position:relative;display:grid;grid-template-columns:170px 1fr 310px;align-items:center;gap:5%;padding:98px 7%;background:linear-gradient(120deg,#222225,#17181a);border-bottom:1px solid #ffffff20}
+    .intro .eyebrow{align-self:start;margin-top:18px}
+    .intro h2{font-size:clamp(39px,4.2vw,65px);font-weight:500;line-height:1.14;letter-spacing:-.045em;margin:0}
+    .intro p{color:var(--muted);line-height:1.9;font-size:14px;margin:0;padding-left:30px;border-left:1px solid #c9a47c66}
+
+    /* menu */
+    .menu-section{position:relative;padding:115px 7% 135px;background:radial-gradient(circle at 90% 20%,#47362a55,transparent 35%),#111214}
+    .menu-top{display:flex;align-items:end;justify-content:space-between;gap:35px;max-width:1300px;margin:0 auto 58px}
+    .section-heading{max-width:650px}
+    .section-heading h2{font-weight:500;letter-spacing:-.05em;line-height:1.12;font-size:clamp(48px,5vw,78px);margin:18px 0}
+    .section-heading p{color:var(--muted);font-size:14px;line-height:1.8;margin:0}
+    .tabs{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end;padding-bottom:6px}
+    .tab{padding:12px 17px;border-radius:30px;border:1px solid #ffffff2b;background:#ffffff0c;color:#c4c1bc;font-size:11px;font-weight:700;box-shadow:inset 0 1px 1px #ffffff25;transition:all .25s;backdrop-filter:blur(14px)}
+    .tab:hover{border-color:#c9a47c99;color:#fff;transform:translateY(-2px)}
+    .tab[aria-selected="true"]{background:linear-gradient(145deg,#dabb96,#ad8157);color:#171412;border-color:#efcc9d;box-shadow:inset 0 1px 2px #fff9,0 9px 24px #0008}
+    .menu-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;max-width:1300px;margin:auto;align-items:start}
+    .dish-card{position:relative;overflow:hidden;padding:10px 10px 36px;background:linear-gradient(145deg,#ffffff1e,#ffffff08);border:1px solid #ffffff2c;box-shadow:inset 0 1px 2px #ffffff35,0 20px 40px #0006;backdrop-filter:blur(20px);border-radius:22px;animation:cardIn .8s cubic-bezier(.2,.7,.2,1) backwards;transition:transform .5s cubic-bezier(.2,.7,.2,1),border-color .5s,box-shadow .5s}
+    .dish-card:nth-child(2){margin-top:55px;animation-delay:.12s}
+    .dish-card:nth-child(3){margin-top:110px;animation-delay:.24s}
+    .dish-card:hover{transform:translateY(-10px);border-color:#c9a47c80;box-shadow:inset 0 1px 2px #ffffff40,0 34px 60px #000a}
+    .dish-card:after{content:"";position:absolute;left:22px;right:22px;bottom:18px;height:1px;background:linear-gradient(90deg,var(--accent),transparent);transform:scaleX(0);transform-origin:left;transition:transform .7s cubic-bezier(.2,.7,.2,1)}
+    .dish-card:hover:after{transform:scaleX(1)}
+    .dish-media{overflow:hidden;height:350px}
+    .dish-card:nth-child(1) .dish-media{border-radius:48% 48% 8px 8px}
+    .dish-card:nth-child(2) .dish-media{clip-path:polygon(0 0,100% 0,100% 80%,78% 100%,0 100%)}
+    .dish-card:nth-child(3) .dish-media{border-radius:12px 48% 12px 48%}
+    .dish-image{display:block;width:100%;height:100%;object-fit:cover;object-position:center;filter:saturate(.75) brightness(.95);transition:transform 1.2s cubic-bezier(.2,.7,.2,1),filter .8s}
+    .dish-card:hover .dish-image{transform:scale(1.08);filter:saturate(1) brightness(1)}
+    .dish-body{padding:22px 12px 0}
+    .dish-top{display:flex;align-items:start;justify-content:space-between;gap:10px}
+    .dish-card h3{font-size:26px;font-weight:600;letter-spacing:-.03em;margin:0 0 9px;transition:color .3s}
+    .dish-card:hover h3{color:var(--accent-2)}
+    .dish-price{font-size:10px;font-weight:700;color:var(--accent);white-space:nowrap;margin-top:9px;letter-spacing:.12em;text-transform:uppercase}
+    .dish-card p{color:#aaa8a5;font-size:12px;line-height:1.7;margin:0}
+
+    /* story */
+    .story{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:9%;padding:120px 9%;background:#1a1b1d;border-top:1px solid #ffffff12}
+    .story-image-wrap{position:relative;grid-column:2;grid-row:1;translate:0 var(--sy,0px)}
+    .story-image-wrap:before{content:"";position:absolute;inset:-17px -18px 17px 18px;border:1px solid #c9a47c70;clip-path:polygon(0 0,83% 0,100% 18%,100% 100%,17% 100%,0 82%)}
+    .story-image{position:relative;display:block;width:100%;height:530px;object-fit:cover;clip-path:polygon(0 0,83% 0,100% 18%,100% 100%,17% 100%,0 82%);filter:brightness(.8);box-shadow:0 25px 50px #0008}
+    .story-copy{grid-column:1;grid-row:1;max-width:510px}
+    .story-copy h2{font-size:clamp(47px,5vw,77px);line-height:1.1;font-weight:500;letter-spacing:-.05em;margin:20px 0}
+    .story-copy>p{color:#aaa8a5;line-height:1.9;font-size:15px;margin-bottom:30px}
+    .steps{list-style:none;margin:0 0 34px;padding:0;border-top:1px solid #ffffff1c}
+    .steps li{display:flex;gap:20px;align-items:baseline;padding:17px 0;border-bottom:1px solid #ffffff1c;transition:padding .35s,background .35s}
+    .steps li:hover{padding-left:12px}
+    .steps b{font-family:"Playfair Display",serif;font-size:15px;font-weight:500;color:var(--accent);letter-spacing:.06em}
+    .steps span{color:#aaa8a5;font-size:13px;line-height:1.7}
+    .steps strong{display:block;color:var(--text);font-size:14px;letter-spacing:.02em;margin-bottom:2px}
+
+    /* visit */
+    .visit{padding:100px 7%;background:#101113;text-align:center}
+    .visit-panel{max-width:1100px;margin:auto;position:relative;overflow:hidden;padding:76px 30px;border-radius:38px;background:radial-gradient(520px circle at var(--mx,80%) var(--my,100%),#c9a47c2e,transparent 62%),linear-gradient(130deg,#303033bb,#1b1b1ec9);border:1px solid #ffffff46;box-shadow:inset 0 2px 3px #ffffff4a,0 28px 60px #000a;backdrop-filter:blur(24px)}
+    .visit-panel:before{content:"";position:absolute;width:380px;height:380px;border:1px solid #ffffff1e;border-radius:50%;left:-180px;top:-180px;box-shadow:0 0 0 45px #ffffff08,0 0 0 100px #ffffff04}
+    .visit-panel>*{position:relative;z-index:1}
+    .visit h2{font-size:clamp(42px,5vw,68px);font-weight:500;letter-spacing:-.045em;margin:18px 0}
+    .visit p{color:#c6c2bc;line-height:1.8;font-size:14px;margin:0 auto 30px;max-width:530px}
+    .visit .primary-btn{animation:ring 2.8s ease-out infinite}
+
+    footer{background:#101113;padding:0 7% 32px}
+    .footer-inner{max-width:1200px;margin:auto;border-top:1px solid #ffffff25;padding-top:30px;display:flex;align-items:center;justify-content:space-between;gap:15px}
+    .footer-inner .brand{font-size:26px}
+    .footer-inner p{font-size:12px;color:#888783;margin:0}
+    .footer-links{display:flex;gap:22px;font-size:12px;font-weight:700}
+    .footer-links a{transition:color .2s}.footer-links a:hover{color:var(--accent)}
+    .footer-legal{max-width:1200px;margin:22px auto 0;font-size:11px;color:#6f6e6b;letter-spacing:.04em;text-align:center}
+
+    /* image fallback */
+    img.img-failed{background:linear-gradient(135deg,#2c2d30,#17181a);color:transparent;font-size:0}
+
+    /* motion */
+    @keyframes rise{from{opacity:0;transform:translateY(32px)}to{opacity:1;transform:none}}
+    @keyframes kenburns{from{transform:scale(1)}to{transform:scale(1.09)}}
+    @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+    @keyframes marquee{to{transform:translateX(-50%)}}
+    @keyframes cardIn{from{opacity:0;transform:translateY(38px) scale(.96)}to{opacity:1;transform:none}}
+    @keyframes ring{0%{box-shadow:inset 0 2px 2px #ffffff8c,0 12px 28px #0007,0 0 0 0 #e2c19b99}100%{box-shadow:inset 0 2px 2px #ffffff8c,0 12px 28px #0007,0 0 0 24px #e2c19b00}}
+    .hero-content>*,.hero-bottom>*,.hero-visual{animation:rise 1s cubic-bezier(.2,.7,.2,1) both}
+    .hero-content>:nth-child(1){animation-delay:.05s}.hero-content>:nth-child(2){animation-delay:.18s}
+    .hero-bottom>:nth-child(1){animation-delay:.34s}.hero-bottom>:nth-child(2){animation-delay:.46s}
+    .hero-visual{animation-delay:.6s}
+    .js .reveal{opacity:0;transform:translateY(34px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1);transition-delay:var(--d,0s)}
+    .js .reveal.in{opacity:1;transform:none}
+    .js .reveal-clip .story-image{clip-path:polygon(0 0,0 0,0 100%,0 100%);transition:clip-path 1.4s cubic-bezier(.2,.7,.2,1)}
+    .js .reveal-clip.in .story-image{clip-path:polygon(0 0,83% 0,100% 18%,100% 100%,17% 100%,0 82%)}
+
+    @media(max-width:1050px){
+      .hero-bottom{align-items:start;flex-direction:column}.hero-visual{height:460px}
+      .intro{grid-template-columns:1fr 2fr;gap:25px}.intro p{grid-column:2}
+      .menu-top{align-items:start;flex-direction:column}.tabs{justify-content:flex-start}
+      .dish-media{height:280px}.dish-card h3{font-size:22px}
+      .story{gap:6%;padding:95px 7%}.story-image{height:450px}
+      .nav-links{gap:26px}
+    }
+    @media(max-width:700px){
+      .topbar{padding:20px 6%}.brand{font-size:28px}.mobile-toggle{display:flex}
+      .nav-links{display:none;position:absolute;top:73px;left:5%;right:5%;padding:18px;border-radius:22px;background:#252528f2;border:1px solid #ffffff4a;backdrop-filter:blur(24px);box-shadow:0 20px 40px #000a;flex-direction:column;align-items:stretch;gap:0}
+      .nav-links.open{display:flex}.nav-links a{padding:14px}.nav-links a:not(.nav-cta):after{display:none}.nav-links .nav-cta{margin-top:8px;text-align:center}
+      .hero{padding:65px 6% 95px}.hero:before{top:35px;font-size:9px}
+      h1{font-size:clamp(72px,15vw,112px)}.hero-bottom{gap:26px;margin-bottom:48px}.hero-visual{height:410px;margin-left:5%}
+      .floating-note{left:-5%;bottom:8%}
+      .marquee{padding:18px 0}.marquee-track span{font-size:24px}.marquee-track i{margin:0 24px}
+      .intro{display:block;padding:75px 7%}.intro h2{margin:25px 0}.intro p{padding-left:20px;margin-top:24px}
+      .menu-section{padding:85px 6% 100px}.menu-top{margin-bottom:38px}.menu-grid{grid-template-columns:1fr;max-width:470px;gap:26px}
+      .dish-card:nth-child(2),.dish-card:nth-child(3){margin-top:0}.dish-media{height:350px}
+      .story{grid-template-columns:1fr;padding:85px 8%;gap:55px}.story-copy{grid-column:1;grid-row:1}.story-image-wrap{grid-column:1;grid-row:2}.story-image{height:430px}
+      .visit{padding:75px 5%}.visit-panel{padding:65px 22px}.footer-inner{flex-direction:column;text-align:center}.footer-links{justify-content:center}
+    }
+    @media(max-width:420px){
+      .hero-visual{height:330px}.floating-note{animation:none;transform:scale(.82);transform-origin:left bottom}.hero-actions{gap:10px}.primary-btn,.outline-btn{padding:16px 20px}
+      .dish-media{height:300px}.tab{padding:11px 13px}.story-image{height:350px}
+    }
+    @media(prefers-reduced-motion:reduce){
+      html{scroll-behavior:auto}
+      *,*:before,*:after{transition:none!important;animation:none!important}
+      .js .reveal{opacity:1!important;transform:none!important}
+      .js .reveal-clip .story-image{clip-path:polygon(0 0,83% 0,100% 18%,100% 100%,17% 100%,0 82%)!important}
+    }
+  </style>
+  <script src="/_sdk/ea2423e0a01a756f.data_sdk.js" type="text/javascript" integrity="sha512-Sg0g23oG9zpxeVGJw6Q935Wt19sv7pbBtYnmz0dqpxqMmhlUFeBYJjrBQheq1xeE/u69m7uZ8NgZRq4P2+K57w=="></script>
+  <script src="/_sdk/a03dce2118604c50.editing_sdk.js" type="text/javascript" integrity="sha512-46sNF42LFaPn7btFIGQBmSR71vjynyOsc5USW8U39AL/x6ZIHAGWe0uHrH+ebFKQRMPNQspbZDL5hclteFjUzA=="></script>
+  <script src="/_sdk/a202d01287f70bbd.resizing_sdk.js" type="text/javascript" integrity="sha512-1HSymNrRbmVrPINeyKeKDVHS1r/3KBjQvJ/IjvgAGUrP4+gPCV6nzQEbyDs7SEReA7mlPuHyFKB9Zk2K9KmXhQ=="></script>
+ </head>
+ <body>
+  <div class="progress" id="progress" aria-hidden="true"></div>
+  <div class="site-shell">
+   <header class="topbar canva-header">
+    <a id="brand-link" class="brand canva-link" href="#home" aria-label="Noir Barber Studio, sayfanın başına dön">noir<span>.</span></a> <button id="mobile-toggle" class="mobile-toggle canva-button" type="button" aria-label="Menüyü aç" aria-controls="main-nav" aria-expanded="false"><i data-lucide="menu"></i></button>
+    <nav id="main-nav" class="nav-links canva-menu" aria-label="Ana menü">
+     <a class="canva-link" href="#about">Stüdyomuz</a> <a class="canva-link" href="#menu">Saç Modelleri</a> <a class="canva-link" href="#experience">Yaklaşımımız</a> <a class="nav-cta canva-button" href="#visit">Noir'ı Keşfet <i data-lucide="arrow-up-right" style="width:15px;height:15px"></i></a>
+    </nav>
+   </header>
+   <main>
+    <section id="home" class="hero canva-section" aria-labelledby="hero-title">
+     <div class="hero-content">
+      <span class="eyebrow canva-text">Modern berberlik, zamansız özgüven</span>
+      <h1 id="hero-title">Tarzın <em>senin.</em></h1>
+     </div>
+     <div class="hero-bottom">
+      <p class="hero-copy canva-text">Özenli kesimler, kendiliğinden gelen özgüven. Tarzın ve berberlik ustalığının buluştuğu bir yer.</p>
+      <div class="hero-actions">
+       <a class="primary-btn canva-button" href="#menu">Modelleri Keşfet <i data-lucide="arrow-up-right"></i></a> <a class="outline-btn canva-button" href="#about">Stüdyoyu Tanı <i data-lucide="arrow-right"></i></a>
+      </div>
+     </div>
+     <div class="hero-visual">
+      <div class="hero-photo-wrap">
+       <img id="hero-image" class="hero-photo canva-image" src="https://images.pexels.com/photos/13758248/pexels-photo-13758248.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1600" referrerpolicy="no-referrer" alt="Loş ışıklı berber salonunda müşterisinin saçını makas ve tarakla şekillendiren berber" loading="lazy">
+      </div>
+      <div class="floating-note canva-card">
+       <span class="note-icon"><i data-lucide="scissors"></i></span> <span><strong>Özenle kesildi</strong><small>Tam sana göre</small></span>
+      </div>
+     </div>
+    </section>
+    <div class="marquee" aria-hidden="true"><div class="marquee-track" id="marquee-track"></div></div>
+    <section id="about" class="intro canva-section" aria-labelledby="intro-title">
+     <span class="eyebrow canva-text">Noir'a hoş geldin</span>
+     <h2 id="intro-title">Sadece bir saç kesimi değil. <em>Yepyeni bir bakış.</em></h2>
+     <p class="canva-text">İyi bir tarzın doğal görünmesi gerektiğine inanıyoruz. Klasik kesimlerden modern dokulara, her ayrıntıyı koltuğumuzdaki kişiye göre şekillendiriyoruz.</p>
+    </section>
+    <section id="menu" class="menu-section canva-section" aria-labelledby="menu-title">
+     <div class="menu-top">
+      <div class="section-heading">
+       <span class="eyebrow canva-text">Saç modelleri</span>
+       <h2 id="menu-title">Yeni <em>imzanı bul.</em></h2>
+       <p class="canva-text">Karakterli, özenli ve kendine göre yorumlayabileceğin modelleri keşfet.</p>
+      </div>
+      <div class="tabs canva-tabs" role="tablist" aria-label="Saç modeli kategorileri">
+       <button id="tab-signatures" class="tab canva-button" type="button" role="tab" aria-selected="true" aria-controls="menu-items" data-category="signatures">Öne Çıkanlar</button> <button id="tab-small-plates" class="tab canva-button" type="button" role="tab" aria-selected="false" aria-controls="menu-items" data-category="short">Kısa ve Net</button> <button id="tab-sweet" class="tab canva-button" type="button" role="tab" aria-selected="false" aria-controls="menu-items" data-category="classic">Klasik Tarz</button>
+      </div>
+     </div>
+     <div id="menu-items" class="menu-grid" role="tabpanel" aria-labelledby="tab-signatures"></div>
+    </section>
+    <section id="experience" class="story canva-section" aria-labelledby="story-title">
+     <div class="story-image-wrap reveal-clip">
+      <img id="story-image" class="story-image canva-image" src="https://images.pexels.com/photos/17027433/pexels-photo-17027433.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1400" referrerpolicy="no-referrer" alt="Işıklı tabelalarıyla loş ve etkileyici berber salonu iç mekânı" loading="lazy">
+     </div>
+     <div class="story-copy">
+      <span class="eyebrow canva-text">Noir'ın yaklaşımı</span>
+      <h2 id="story-title">Farkı yaratan <em>ayrıntılardır.</em></h2>
+      <p class="canva-text">İyi bir kesim seni dinlemekle başlar. Tarzını, günlük alışkanlıklarını ve buradan nasıl hissederek ayrılmak istediğini anlamak için zaman ayırırız. Sonuç, berber koltuğunun ötesinde de sana yakışan bir görünüm olur.</p>
+      <ol class="steps">
+       <li><b>01</b><span><strong>Dinleriz</strong>Tarzını ve günlük alışkanlıklarını anlarız.</span></li>
+       <li><b>02</b><span><strong>Şekillendiririz</strong>Her ayrıntıyı koltuktaki kişiye göre biçimlendiririz.</span></li>
+       <li><b>03</b><span><strong>Tamamlarız</strong>Sana yakışan bir görünümle, kendinden emin ayrılırsın.</span></li>
+      </ol>
+      <a class="primary-btn canva-button" href="#menu">Modellere Göz At <i data-lucide="arrow-up-right"></i></a>
+     </div>
+    </section>
+    <section id="visit" class="visit canva-section" aria-labelledby="visit-title">
+     <div class="visit-panel canva-panel">
+      <span class="eyebrow canva-text">Kendine yakışanı bul</span>
+      <h2 id="visit-title">Yeni tarzın <em>burada başlıyor.</em></h2>
+      <p class="canva-text">Biraz ilham al. Kesimlere göz at, sana en çok yakışanı bul ve bir sonraki ziyaretinde kendi tarzını ortaya koy.</p>
+      <a class="primary-btn canva-button" href="#menu">Modellere Göz At <i data-lucide="arrow-up-right"></i></a>
+     </div>
+    </section>
+   </main>
+   <footer class="canva-footer">
+    <div class="footer-inner">
+     <a class="brand canva-link" href="#home">noir<span>.</span></a>
+     <p class="canva-text">İyi saç, güçlü duruş.</p>
+     <div class="footer-links">
+      <a class="canva-link" href="#about">Stüdyo</a> <a class="canva-link" href="#menu">Modeller</a> <a class="canva-link" href="#experience">Ustalık</a>
+     </div>
+    </div>
+    <div class="footer-legal canva-text">© 2026 Noir Barber Studio. Tüm hakları saklıdır.</div>
+   </footer>
+  </div>
+  <script>
+    const px = (id, w) => `https://images.pexels.com/photos/${id}/pexels-photo-${id}.jpeg?auto=compress&cs=tinysrgb&w=${w || 1000}`;
+    const styleData = {
+      signatures: [
+        {name:"Modern Fade",tag:"Hassas Kesim",desc:"Yumuşak geçişleri ve tertemiz bitişiyle dikkat çeken net bir silüet.",image:px(6487911),alt:"Dokulu üst kısmı ve özenli geçişleri görülen modern erkek saç kesimi yakın çekimi"},
+        {name:"Dokulu Kesim",tag:"Çağdaş",desc:"Hareketli, biçimli ve uğraşılmamış gibi görünen rahat bir tarz.",image:px(15932225),alt:"Dokulu saç kesimi ve sakalıyla bir erkeğin yandan portresi"},
+        {name:"Geriye Taranmış",tag:"Zamansız",desc:"Duruşu, karakteri ve kendine has havasıyla öne çıkan bakımlı bir klasik.",image:px(5337943),alt:"Saçları geriye taranmış bir erkeğin portresi"}
+      ],
+      short: [
+        {name:"Modern Fade",tag:"Hassas Kesim",desc:"Yüzüne ve tarzına göre şekillenen keskin hatlar, pürüzsüz geçişler.",image:px(6487911),alt:"Dokulu üst kısmı ve özenli geçişleri görülen modern erkek saç kesimi yakın çekimi"},
+        {name:"Detaylı Kesim",tag:"Ustalık",desc:"Küçük ayrıntıların fark yarattığı kısa ve kusursuz bir kesim.",image:px(18503633),alt:"Saç kesimini makineyle özenle tamamlayan berber"},
+        {name:"Net Hatlar",tag:"Sade",desc:"Her güne uyum sağlayan yalın bir biçim ve kendinden emin çizgiler.",image:px(29570984),alt:"Modern saç kesimli şık bir erkeğin yandan görünümü"}
+      ],
+      classic: [
+        {name:"Geriye Taranmış",tag:"Zamansız",desc:"Temiz hatları ve doğal parlaklığıyla yıllara meydan okuyan klasik.",image:px(5337943),alt:"Saçları geriye taranmış bir erkeğin portresi"},
+        {name:"Klasik Dokunuş",tag:"Gelenek",desc:"Geleneksel berberliğin özenli bir bitişle yeniden yorumlanışı.",image:px(5337944),alt:"Özenle şekillendirilmiş erkek saç kesiminin arkadan görünümü"},
+        {name:"Modern Beyefendi",tag:"Karakter",desc:"Klasik çizgileri çağdaş bir rahatlıkla buluşturan çok yönlü bir görünüm.",image:px(4850600),alt:"Bakımlı saçlı bir erkeğin siyah beyaz portresi"}
+      ]
+    };
+    const menuItems = document.getElementById('menu-items');
+    function renderStyles(category) {
+      menuItems.innerHTML = styleData[category].map((style,index) => `
+        <article class="dish-card canva-card">
+          <div class="dish-media"><img id="style-image-${category}-${index+1}" class="dish-image canva-image" src="${style.image}" referrerpolicy="no-referrer" alt="${style.alt}" loading="lazy"></div>
+          <div class="dish-body"><div class="dish-top"><h3>${style.name}</h3><span class="dish-price canva-tag">${style.tag}</span></div><p class="canva-text">${style.desc}</p></div>
+        </article>`).join('');
+      document.querySelectorAll('.tab').forEach(tab => {
+        const selected = tab.dataset.category === category;
+        tab.setAttribute('aria-selected', String(selected));
+        tab.tabIndex = selected ? 0 : -1;
+        if (selected) menuItems.setAttribute('aria-labelledby', tab.id);
+      });
+    }
+    document.querySelectorAll('.tab').forEach(tab => tab.addEventListener('click', () => renderStyles(tab.dataset.category)));
+    document.querySelector('.tabs').addEventListener('keydown', e => {
+      if (!['ArrowLeft','ArrowRight','Home','End'].includes(e.key)) return;
+      e.preventDefault();
+      const tabs = [...document.querySelectorAll('.tab')];
+      let index = tabs.findIndex(tab => tab.getAttribute('aria-selected') === 'true');
+      index = e.key === 'Home' ? 0 : e.key === 'End' ? tabs.length-1 : (index + (e.key === 'ArrowRight' ? 1 : -1) + tabs.length) % tabs.length;
+      renderStyles(tabs[index].dataset.category);
+      tabs[index].focus();
+    });
+
+    /* Mobile navigation */
+    const toggle = document.getElementById('mobile-toggle');
+    const nav = document.getElementById('main-nav');
+    toggle.addEventListener('click', () => {
+      const open = nav.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', String(open));
+      toggle.setAttribute('aria-label', open ? 'Menüyü kapat' : 'Menüyü aç');
+      toggle.innerHTML = open ? '<i data-lucide="x"></i>' : '<i data-lucide="menu"></i>';
+      lucide.createIcons();
+    });
+    nav.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+      nav.classList.remove('open');
+      toggle.setAttribute('aria-expanded','false');
+      toggle.setAttribute('aria-label','Menüyü aç');
+      toggle.innerHTML = '<i data-lucide="menu"></i>';
+      lucide.createIcons();
+    }));
+
+    /* Photos that fail to load get a dark placeholder instead of a broken box */
+    document.addEventListener('error', e => { if (e.target && e.target.tagName === 'IMG') e.target.classList.add('img-failed'); }, true);
+
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    /* Ribbon */
+    (function(){
+      const words = ['Hassas Kesim','Zamansız','Çağdaş','Karakter','Ustalık','Sade'];
+      const group = words.map(w => `<span>${w}</span><i></i>`).join('');
+      const half = group + group;
+      document.getElementById('marquee-track').innerHTML = half + half;
+    })();
+
+    /* Header, progress bar and gentle parallax on scroll */
+    const topbar = document.querySelector('.topbar');
+    const progress = document.getElementById('progress');
+    const storyWrap = document.querySelector('.story-image-wrap');
+    let tick = false;
+    function onScroll() {
+      const y = window.scrollY;
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      progress.style.transform = 'scaleX(' + (max > 0 ? Math.min(y / max, 1) : 0) + ')';
+      topbar.classList.toggle('scrolled', y > 30);
+      if (storyWrap && !reduceMotion) {
+        const r = storyWrap.getBoundingClientRect();
+        storyWrap.style.setProperty('--sy', ((r.top + r.height / 2 - window.innerHeight / 2) * -0.06).toFixed(1) + 'px');
+      }
+      tick = false;
+    }
+    window.addEventListener('scroll', () => { if (!tick) { tick = true; requestAnimationFrame(onScroll); } }, { passive:true });
+    window.addEventListener('resize', onScroll);
+
+    /* Hero mouse parallax (pointer devices only) */
+    const heroEl = document.querySelector('.hero');
+    if (!reduceMotion && window.matchMedia('(hover: hover)').matches) {
+      let raf = 0;
+      heroEl.addEventListener('pointermove', e => {
+        const r = heroEl.getBoundingClientRect();
+        const x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5;
+        cancelAnimationFrame(raf);
+        raf = requestAnimationFrame(() => {
+          heroEl.style.setProperty('--px', (x * 26).toFixed(1) + 'px');
+          heroEl.style.setProperty('--py', (y * 20).toFixed(1) + 'px');
+        });
+      });
+      heroEl.addEventListener('pointerleave', () => { heroEl.style.setProperty('--px','0px'); heroEl.style.setProperty('--py','0px'); });
+    }
+
+    /* Light that follows the cursor over the closing panel */
+    const panel = document.querySelector('.visit-panel');
+    panel.addEventListener('pointermove', e => {
+      const r = panel.getBoundingClientRect();
+      panel.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+      panel.style.setProperty('--my', (e.clientY - r.top) + 'px');
+    });
+
+    /* Reveal on scroll */
+    if (!reduceMotion && 'IntersectionObserver' in window) {
+      const io = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          const el = entry.target;
+          io.unobserve(el);
+          el.classList.add('in');
+          if (el.classList.contains('reveal')) {
+            setTimeout(() => { el.classList.remove('reveal','in'); el.style.removeProperty('--d'); }, 1300);
+          }
+        });
+      }, { threshold:.14, rootMargin:'0px 0px -8% 0px' });
+      document.querySelectorAll('.intro > *,.section-heading > *,.tabs,.story-copy > *,.steps li,.visit-panel > *,.footer-inner,.footer-legal').forEach(el => {
+        const idx = [...el.parentElement.children].indexOf(el);
+        el.style.setProperty('--d', (Math.min(idx, 5) * 0.11).toFixed(2) + 's');
+        el.classList.add('reveal');
+        io.observe(el);
+      });
+      document.querySelectorAll('.reveal-clip').forEach(el => io.observe(el));
+    } else {
+      document.querySelectorAll('.reveal-clip').forEach(el => el.classList.add('in'));
+    }
+
+    renderStyles('signatures');
+    lucide.createIcons();
+    onScroll();
+  </script>
+ </body>
+</html>
