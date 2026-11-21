@@ -77,12 +77,16 @@
     .note-icon svg{width:19px;height:19px}
     .floating-note strong{display:block;font-size:12px}.floating-note small{display:block;color:#d3cfca;font-size:10px;margin-top:4px}
 
-    /* ribbon */
-    .marquee{position:relative;overflow:hidden;padding:24px 0;background:#0b0c0d;border-top:1px solid #c9a47c33;border-bottom:1px solid #c9a47c33}
-    .marquee-track{display:flex;align-items:center;width:max-content;animation:marquee 46s linear infinite}
-    .marquee:hover .marquee-track{animation-play-state:paused}
-    .marquee-track span{font-family:"Playfair Display",serif;font-style:italic;font-size:32px;font-weight:500;color:#d9c3a3;white-space:nowrap}
-    .marquee-track i{width:6px;height:6px;border-radius:50%;background:var(--accent);margin:0 38px;flex:none}
+    /* craft strip */
+    .strip{display:grid;grid-template-columns:repeat(4,1fr);background:#0b0c0d;border-top:1px solid #c9a47c33;border-bottom:1px solid #c9a47c33}
+    .strip-item{display:flex;align-items:center;gap:18px;padding:32px 4%;border-right:1px solid #ffffff12;transition:background .4s}
+    .strip-item:last-child{border-right:0}
+    .strip-item:hover{background:#ffffff08}
+    .strip-icon{flex:none;display:grid;place-items:center;width:50px;height:50px;border-radius:50%;border:1px solid #c9a47c66;color:var(--accent);transition:background .35s,color .35s,transform .35s}
+    .strip-icon svg{width:20px;height:20px}
+    .strip-item:hover .strip-icon{background:var(--accent);color:#171412;transform:rotate(-8deg)}
+    .strip-item strong{display:block;font-family:"Playfair Display",serif;font-size:19px;font-weight:500;letter-spacing:-.01em;margin-bottom:3px}
+    .strip-item p{margin:0;color:var(--muted);font-size:12px;line-height:1.6}
 
     /* intro */
     .intro{position:relative;display:grid;grid-template-columns:170px 1fr 310px;align-items:center;gap:5%;padding:98px 7%;background:linear-gradient(120deg,#222225,#17181a);border-bottom:1px solid #ffffff20}
@@ -159,7 +163,6 @@
     @keyframes rise{from{opacity:0;transform:translateY(32px)}to{opacity:1;transform:none}}
     @keyframes kenburns{from{transform:scale(1)}to{transform:scale(1.09)}}
     @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
-    @keyframes marquee{to{transform:translateX(-50%)}}
     @keyframes cardIn{from{opacity:0;transform:translateY(38px) scale(.96)}to{opacity:1;transform:none}}
     @keyframes ring{0%{box-shadow:inset 0 2px 2px #ffffff8c,0 12px 28px #0007,0 0 0 0 #e2c19b99}100%{box-shadow:inset 0 2px 2px #ffffff8c,0 12px 28px #0007,0 0 0 24px #e2c19b00}}
     .hero-content>*,.hero-bottom>*,.hero-visual{animation:rise 1s cubic-bezier(.2,.7,.2,1) both}
@@ -178,6 +181,7 @@
       .dish-media{height:280px}.dish-card h3{font-size:22px}
       .story{gap:6%;padding:95px 7%}.story-image{height:450px}
       .nav-links{gap:26px}
+      .strip{grid-template-columns:repeat(2,1fr)}.strip-item:nth-child(2){border-right:0}.strip-item:nth-child(-n+2){border-bottom:1px solid #ffffff12}
     }
     @media(max-width:700px){
       .topbar{padding:20px 6%}.brand{font-size:28px}.mobile-toggle{display:flex}
@@ -186,7 +190,7 @@
       .hero{padding:65px 6% 95px}.hero:before{top:35px;font-size:9px}
       h1{font-size:clamp(72px,15vw,112px)}.hero-bottom{gap:26px;margin-bottom:48px}.hero-visual{height:410px;margin-left:5%}
       .floating-note{left:-5%;bottom:8%}
-      .marquee{padding:18px 0}.marquee-track span{font-size:24px}.marquee-track i{margin:0 24px}
+      .strip{grid-template-columns:1fr}.strip-item{border-right:0;border-bottom:1px solid #ffffff12;padding:24px 7%}.strip-item:last-child{border-bottom:0}
       .intro{display:block;padding:75px 7%}.intro h2{margin:25px 0}.intro p{padding-left:20px;margin-top:24px}
       .menu-section{padding:85px 6% 100px}.menu-top{margin-bottom:38px}.menu-grid{grid-template-columns:1fr;max-width:470px;gap:26px}
       .dish-card:nth-child(2),.dish-card:nth-child(3){margin-top:0}.dish-media{height:350px}
@@ -209,8 +213,7 @@
   <script src="/_sdk/a202d01287f70bbd.resizing_sdk.js" type="text/javascript" integrity="sha512-1HSymNrRbmVrPINeyKeKDVHS1r/3KBjQvJ/IjvgAGUrP4+gPCV6nzQEbyDs7SEReA7mlPuHyFKB9Zk2K9KmXhQ=="></script>
  </head>
  <body>
-  <div class="progress" id="progress" aria-hidden="true"></div>
-  <div class="site-shell">
+  <div class="progress" id="progress" aria-hidden="true"></div>  <div class="site-shell">
    <header class="topbar canva-header">
     <a id="brand-link" class="brand canva-link" href="#home" aria-label="Noir Barber Studio, sayfanın başına dön">noir<span>.</span></a> <button id="mobile-toggle" class="mobile-toggle canva-button" type="button" aria-label="Menüyü aç" aria-controls="main-nav" aria-expanded="false"><i data-lucide="menu"></i></button>
     <nav id="main-nav" class="nav-links canva-menu" aria-label="Ana menü">
@@ -221,7 +224,7 @@
     <section id="home" class="hero canva-section" aria-labelledby="hero-title">
      <div class="hero-content">
       <span class="eyebrow canva-text">Modern berberlik, zamansız özgüven</span>
-      <h1 id="hero-title">Tarz <em>senin.</em></h1>
+      <h1 id="hero-title">Tarzın <em>senin.</em></h1>
      </div>
      <div class="hero-bottom">
       <p class="hero-copy canva-text">Özenli kesimler, kendiliğinden gelen özgüven. Tarzın ve berberlik ustalığının buluştuğu bir yer.</p>
@@ -238,7 +241,12 @@
       </div>
      </div>
     </section>
-    <div class="marquee" aria-hidden="true"><div class="marquee-track" id="marquee-track"></div></div>
+    <div class="strip canva-section">
+     <div class="strip-item"><span class="strip-icon"><i data-lucide="scissors"></i></span><div><strong>Hassas Kesim</strong><p class="canva-text">Net hatlar, pürüzsüz geçişler.</p></div></div>
+     <div class="strip-item"><span class="strip-icon"><i data-lucide="clock"></i></span><div><strong>Zamansız</strong><p class="canva-text">Yıllara meydan okuyan klasikler.</p></div></div>
+     <div class="strip-item"><span class="strip-icon"><i data-lucide="zap"></i></span><div><strong>Çağdaş</strong><p class="canva-text">Hareketli, rahat, modern dokular.</p></div></div>
+     <div class="strip-item"><span class="strip-icon"><i data-lucide="award"></i></span><div><strong>Ustalık</strong><p class="canva-text">Küçük ayrıntıların fark yarattığı işçilik.</p></div></div>
+    </div>
     <section id="about" class="intro canva-section" aria-labelledby="intro-title">
      <span class="eyebrow canva-text">Noir'a hoş geldin</span>
      <h2 id="intro-title">Sadece bir saç kesimi değil. <em>Yepyeni bir bakış.</em></h2>
@@ -360,14 +368,6 @@
 
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    /* Ribbon */
-    (function(){
-      const words = ['Hassas Kesim','Zamansız','Çağdaş','Karakter','Ustalık','Sade'];
-      const group = words.map(w => `<span>${w}</span><i></i>`).join('');
-      const half = group + group;
-      document.getElementById('marquee-track').innerHTML = half + half;
-    })();
-
     /* Header, progress bar and gentle parallax on scroll */
     const topbar = document.querySelector('.topbar');
     const progress = document.getElementById('progress');
@@ -424,7 +424,7 @@
           }
         });
       }, { threshold:.14, rootMargin:'0px 0px -8% 0px' });
-      document.querySelectorAll('.intro > *,.section-heading > *,.tabs,.story-copy > *,.steps li,.visit-panel > *,.footer-inner,.footer-legal').forEach(el => {
+      document.querySelectorAll('.intro > *,.section-heading > *,.tabs,.story-copy > *,.steps li,.strip-item,.visit-panel > *,.footer-inner,.footer-legal').forEach(el => {
         const idx = [...el.parentElement.children].indexOf(el);
         el.style.setProperty('--d', (Math.min(idx, 5) * 0.11).toFixed(2) + 's');
         el.classList.add('reveal');
